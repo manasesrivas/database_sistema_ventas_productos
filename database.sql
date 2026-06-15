@@ -48,5 +48,28 @@ CREATE TABLE descuentos (
 
 CREATE TABLE marcas(
     id_marca INT AUTO_INCREMENT PRIMARY KEY,
-    marca VARCHAR(30),
+    marca VARCHAR(30)
+);
+
+
+CREATE TABLE ventas(
+    id_venta INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total INT,
+    descuento_id INT,
+    cliente_id INT,
+    usuario_id INT
+    -- FOREIGN KEY(cliente_id) REFERENCES clientes(id_cliente),
+    -- FOREIGN KEY(usuario_id) REFERENCES usuarios(id_usuario),
+    -- FOREIGN KEY(descuento_id) REFERENCES descuentos(id_descuento)
+);
+
+CREATE TABLE detalle_ventas(
+    id_detalle_venta INT AUTO_INCREMENT PRIMARY KEY,
+    venta_id INT,
+    producto_id INT,
+    subtotal INT,
+    cantidad INT,
+    -- FOREIGN KEY(producto_id) REFERENCES usuarios(id_producto),
+    FOREIGN KEY(venta_id) REFERENCES ventas(id_venta)
 );
