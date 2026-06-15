@@ -51,7 +51,16 @@ CREATE TABLE marcas(
     marca VARCHAR(30)
 );
 
-
+CREATE TABLE productos(
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_producto VARCHAR(20),
+    marca_id INT,
+    precio INT,
+    categoria_id INT,
+    stock INT,
+    FOREIGN KEY(categoria_id) REFERENCES categorias(id_categoria),
+    FOREIGN KEY(marca_id) REFERENCES marcas(id_marca)
+);
 CREATE TABLE ventas(
     id_venta INT AUTO_INCREMENT PRIMARY KEY,
     fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
