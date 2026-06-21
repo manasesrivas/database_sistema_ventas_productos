@@ -58,6 +58,10 @@ CREATE TABLE productos(
     precio INT,
     categoria_id INT,
     stock INT,
+    imagen VARCHAR(255),
+    modelo VARCHAR(50),
+    caracteristicas VARCHAR(255),
+    eliminado VARCHAR(1),
     FOREIGN KEY(categoria_id) REFERENCES categorias(id_categoria),
     FOREIGN KEY(marca_id) REFERENCES marcas(id_marca)
 );
