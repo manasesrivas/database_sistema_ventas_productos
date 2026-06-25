@@ -138,3 +138,20 @@ ALTER TABLE `tbl_usuarios`
 ALTER TABLE `tbl_usuarios`
   MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
+
+
+
+-- Administrador:
+-- Usuario: admin
+-- Contraseña: Admin123*
+
+-- Vendedor:
+-- Usuario: lramirez
+-- Contraseña: Vendedor123*
+
+
+INSERT INTO tbl_usuarios(NombreCompleto, Usuario, `Password`, TipoCuenta, Eliminado)
+VALUES ('Administrador del Sistema', 'admin', '$2y$12$dACYyTFygqcnGoYRpJPhVu5smwsNTXOVsEBQFb1fy8QeSX8ILCfG.', 'ADMINISTRADOR', 'N');
+
+INSERT INTO tbl_usuarios (NombreCompleto, Usuario, `Password`, TipoCuenta, Eliminado)
+VALUES('Luis Fernando Ramírez', 'lramirez', '$2y$12$Ll3zF84xsh6dwRNulJtemeeni0JSG6F.o9gOLvzGWiDwdFEiDvOEG', 'VENDEDOR', 'N');
