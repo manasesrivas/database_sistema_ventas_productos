@@ -42,13 +42,15 @@ CREATE TABLE categorias (
 CREATE TABLE descuentos (
     id_descuento INT AUTO_INCREMENT PRIMARY KEY,
     descuento TINYINT, -- se deja entero para posteriormente convertirlo a decimal
-    descripcion VARCHAR(50)
+    descripcion VARCHAR(50),
+    estado VARCHAR(50)
 );
 
 
 CREATE TABLE marcas(
     id_marca INT AUTO_INCREMENT PRIMARY KEY,
-    marca VARCHAR(30)
+    marca VARCHAR(30),
+    estado TINYINT
 );
 
 CREATE TABLE productos(
@@ -71,7 +73,8 @@ CREATE TABLE ventas(
     total INT,
     descuento_id INT,
     cliente_id INT,
-    usuario_id INT
+    usuario_id INT,
+    estado VARCHAR(10) DEFAULT 'activo'
     -- FOREIGN KEY(cliente_id) REFERENCES clientes(id_cliente),
     -- FOREIGN KEY(usuario_id) REFERENCES usuarios(id_usuario),
     -- FOREIGN KEY(descuento_id) REFERENCES descuentos(id_descuento)
@@ -86,3 +89,52 @@ CREATE TABLE detalle_ventas(
     -- FOREIGN KEY(producto_id) REFERENCES usuarios(id_producto),
     FOREIGN KEY(venta_id) REFERENCES ventas(id_venta)
 );
+
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(100) NOT NULL,
+    rol_id INT
+);
+USE sistema_ventas;
+INSERT INTO categorias( categoria ) VALUES('Teclados');
+INSERT INTO marcas( marca ) VALUES('HP');
+
+
+SELECT * FROM categorias;
+
+UPDATE categorias
+    SET categoria = 'lsdlf',
+        descripcion = null
+    WHERE id_categoria = 1;
+
+
+CREATE TABLE `tbl_usuarios` (
+  `IdUsuario` int(11) NOT NULL,
+  `NombreCompleto` varchar(100) NOT NULL,
+  `Usuario` varchar(50) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `TipoCuenta` enum('ADMINISTRADOR','VENDEDOR') NOT NULL,
+  `Eliminado` char(1) NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `tbl_usuarios`
+--
+ALTER TABLE `tbl_usuarios`
+  ADD PRIMARY KEY (`IdUsuario`),
+  ADD UNIQUE KEY `Usuario` (`Usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tbl_usuarios`
+--
+ALTER TABLE `tbl_usuarios`
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
